@@ -2,6 +2,7 @@ public abstract class Conta {
 
     private String nomeCliente;
     private int numConta;
+    private String clienteEpecial;
 
     public static void imprime(String msg) { System.out.print(msg); }
     public abstract double depositar(double valor);

@@ -16,6 +16,12 @@ public class ContaPoupanca extends Conta {
         return this.saldoCP;
     }
 
+    public double depositarEsp(double valor) {
+        this.saldoCP = this.saldoCP + valor;
+        this.saldoCP = this.saldoCP + (valor * 0.05);
+        return this.saldoCP;
+    }
+
     @Override
     public double sacar(double valor) {
         if (saldoCP > valor) {
@@ -28,9 +34,14 @@ public class ContaPoupanca extends Conta {
     }
 
     @Override
+    public double sacarEsp(double valor) {
+        return 0;
+    }
+
+    @Override
     public void exibirSaldo() {
-        imprime("Nome: " + this.getNomeCliente());
-        imprime("Número da Conta: " + this.getNumConta());
-        imprime("Saldo: " + this.saldoCP);
+        imprime("\nNome: " + this.getNomeCliente());
+        imprime("\nNúmero da Conta: " + this.getNumConta());
+        imprime("\nSaldo: " + this.saldoCP);
     }
 }

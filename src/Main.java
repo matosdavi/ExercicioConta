@@ -5,6 +5,9 @@ public class Main {
 
         Scanner entrada = new Scanner(System.in);
 
+        imprime("Você é um cliente especial?\nS - Sim\nN - Não\n");
+        String escolhaClienteEsp = entrada.nextLine();
+
         imprime("Você deseja entrar em uma Conta Corrente ou Conta Poupança?\n1- Conta Corrente\n2- Conta Poupança\n");
         int escolhaConta = Integer.parseInt(entrada.nextLine());
 
@@ -37,18 +40,32 @@ public class Main {
         imprime("Você deseja Depositar ou Sacar?\n1- Depositar\n2- Sacar\n");
         int escolhaOperacao = Integer.parseInt(entrada.nextLine());
 
-        if (escolhaOperacao == 1) {
+        if (escolhaOperacao == 1 && escolhaClienteEsp.equalsIgnoreCase("S")) {
+            imprime("Insira o valor que deseja depositar: ");
+            ((ContaCorrente) conta).depositarEsp(Double.parseDouble(entrada.nextLine()));
+            conta.exibirSaldo();
+
+        } else if (escolhaOperacao == 1) {
             imprime("Insira o valor que deseja depositar: ");
             conta.depositar(Double.parseDouble(entrada.nextLine()));
+            conta.exibirSaldo();
+
+        } else if (escolhaOperacao == 2 && escolhaClienteEsp.equalsIgnoreCase("S")) {
+            imprime("Insira o valor que deseja sacar: ");
+            ((ContaPoupanca) conta).sacarEsp(Double.parseDouble(entrada.nextLine()));
             conta.exibirSaldo();
 
         } else if (escolhaOperacao == 2) {
             imprime("Insira o valor que deseja sacar: ");
             conta.sacar(Double.parseDouble(entrada.nextLine()));
             conta.exibirSaldo();
+
         } else {
             imprime("Por favor, insira uma opção válida.");
         }
     }
-    public static void imprime(String msg) { System.out.print(msg); }
+
+    public static void imprime(String msg) {
+        System.out.print(msg);
+    }
 }
